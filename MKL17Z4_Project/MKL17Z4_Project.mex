@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<configuration name="MKL17Z256xxx4" xsi:schemaLocation="http://mcuxpresso.nxp.com/XSD/mex_configuration_16 http://mcuxpresso.nxp.com/XSD/mex_configuration_16.xsd" uuid="b971c464-9ae0-4a6c-a948-c816faa99ac9" version="16" xmlns="http://mcuxpresso.nxp.com/XSD/mex_configuration_16" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <common>
+      <processor>MKL17Z256xxx4</processor>
+      <package>MKL17Z256VFM4</package>
+      <mcu_data>ksdk2_0</mcu_data>
+      <cores selected="core0">
+         <core name="Cortex-M0P" id="core0" description="M0P core"/>
+      </cores>
+      <description>Configuration imported from MKL17Z4_Project</description>
+   </common>
+   <preferences>
+      <validate_boot_init_only>true</validate_boot_init_only>
+      <generate_extended_information>false</generate_extended_information>
+      <generate_code_modified_registers_only>false</generate_code_modified_registers_only>
+      <update_include_paths>true</update_include_paths>
+      <generate_registers_defines>false</generate_registers_defines>
+   </preferences>
+   <tools>
+      <pins name="Pins" version="16.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/pin_mux.c" update_enabled="true"/>
+            <file path="board/pin_mux.h" update_enabled="true"/>
+         </generated_project_files>
+         <pins_profile>
+            <processor_version>13.0.1</processor_version>
+            <external_user_signals>
+               <properties/>
+            </external_user_signals>
+         </pins_profile>
+         <functions_list>
+            <function name="BOARD_InitPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>true</callFromInitBoot>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="I2C0" description="Peripheral I2C0 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="Peripheral" resourceId="I2C1" description="Peripheral I2C1 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="Peripheral" resourceId="TPM0" description="Peripheral TPM0 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.port" description="Pins initialization requires the PORT Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="I2C0" signal="SCL" pin_num="20" pin_signal="ADC0_SE8/PTB0/LLWU_P5/I2C0_SCL/TPM1_CH0"/>
+                  <pin peripheral="I2C0" signal="SDA" pin_num="21" pin_signal="ADC0_SE9/PTB1/I2C0_SDA/TPM1_CH1"/>
+                  <pin peripheral="I2C1" signal="SCL" pin_num="22" pin_signal="ADC0_SE15/PTC1/LLWU_P6/RTC_CLKIN/I2C1_SCL/TPM0_CH0/I2S0_TXD0"/>
+                  <pin peripheral="I2C1" signal="SDA" pin_num="23" pin_signal="ADC0_SE11/PTC2/I2C1_SDA/TPM0_CH1/I2S0_TX_FS"/>
+                  <pin peripheral="TPM0" signal="CLKIN" pin_num="17" pin_signal="EXTAL0/PTA18/LPUART1_RX/TPM_CLKIN0"/>
+               </pins>
+            </function>
+         </functions_list>
+      </pins>
+      <clocks name="Clocks" version="14.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/clock_config.c" update_enabled="true"/>
+            <file path="board/clock_config.h" update_enabled="true"/>
+         </generated_project_files>
+         <clocks_profile>
+            <processor_version>13.0.1</processor_version>
+         </clocks_profile>
+         <clock_configurations>
+            <clock_configuration name="BOARD_BootClockRUN" id_prefix="" prefix_user_defined="false">
+               <description></description>
+               <options/>
+               <dependencies>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Clocks initialization requires the COMMON Driver in the project." problem_level="2" source="Clocks:BOARD_BootClockRUN">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <clock_sources>
+                  <clock_source id="MCG.HIRC.outFreq" value="48 MHz" locked="false" enabled="false"/>
+               </clock_sources>
+               <clock_outputs>
+                  <clock_output id="Bus_clock.outFreq" value="4 MHz" locked="false" accuracy=""/>
+                  <clock_output id="Core_clock.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="Flash_clock.outFreq" value="4 MHz" locked="false" accuracy=""/>
+                  <clock_output id="LPO_clock.outFreq" value="1 kHz" locked="false" accuracy=""/>
+                  <clock_output id="MCGIRCLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="MCGPCLK.outFreq" value="48 MHz" locked="false" accuracy=""/>
+                  <clock_output id="System_clock.outFreq" value="8 MHz" locked="false" accuracy=""/>
+               </clock_outputs>
+               <clock_settings>
+                  <setting id="MCG_MC_HIRCEN_CFG" value="Enabled" locked="false"/>
+               </clock_settings>
+               <called_from_default_init>true</called_from_default_init>
+            </clock_configuration>
+         </clock_configurations>
+      </clocks>
+      <dcdx name="DCDx" version="3.0" enabled="false" update_project_code="true">
+         <dcdx_profile>
+            <processor_version>N/A</processor_version>
+         </dcdx_profile>
+         <dcdx_configurations/>
+      </dcdx>
+      <periphs name="Peripherals" version="15.0" enabled="true" update_project_code="true">
+         <dependencies>
+            <dependency resourceType="SWComponent" resourceId="platform.drivers.i2c" description="I2C Driver is not found in the toolchain/IDE project. The project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.drivers.i2c" description="An unsupported version of the I2C Driver in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. The project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">2.0.5</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.drivers.tpm" description="TPM Driver is not found in the toolchain/IDE project. The project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.drivers.tpm" description="An unsupported version of the TPM Driver in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. The project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">2.0.2</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="Tool" resourceId="Clocks" description="The Clocks tool is required by the Peripherals tool, but it is disabled." problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data>true</data>
+               </feature>
+            </dependency>
+         </dependencies>
+         <generated_project_files>
+            <file path="board/peripherals.c" update_enabled="true"/>
+            <file path="board/peripherals.h" update_enabled="true"/>
+         </generated_project_files>
+         <peripherals_profile>
+            <processor_version>13.0.1</processor_version>
+         </peripherals_profile>
+         <functional_groups>
+            <functional_group name="BOARD_InitPeripherals" uuid="36d4a86f-2776-48b1-a42f-f397f514861e" called_from_default_init="true" id_prefix="" core="core0">
+               <description></description>
+               <options/>
+               <dependencies>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="I2C0.i2c_scl" description="Signal serial clock is not routed." problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="routed" evaluation="">
+                        <data type="Boolean">true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="I2C0.i2c_sda" description="Signal serial data is not routed." problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="routed" evaluation="">
+                        <data type="Boolean">true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="ClockOutput" resourceId="System_clock" description="System clock is inactive." problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="frequency" evaluation="greaterThan">
+                        <data type="Frequency" unit="Hz">0</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="I2C1.i2c_scl" description="Signal serial clock is not routed." problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="routed" evaluation="">
+                        <data type="Boolean">true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="I2C1.i2c_sda" description="Signal serial data is not routed." problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="routed" evaluation="">
+                        <data type="Boolean">true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="ClockOutput" resourceId="System_clock" description="System clock is inactive." problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="frequency" evaluation="greaterThan">
+                        <data type="Frequency" unit="Hz">0</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="TPM0.tmr_clk" description="External clock source signal CLKIN of peripheral TPM0 is not routed" problem_level="1" source="Peripherals:BOARD_InitPeripherals">
+                     <feature name="routed" evaluation="equal">
+                        <data type="Boolean">true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <instances>
+                  <instance name="NVIC" uuid="5a2a69bf-8c12-409c-8cec-553f3c70061d" type="nvic" type_id="nvic_57b5eef3774cc60acaede6f5b8bddc67" mode="general" peripheral="NVIC" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="nvic">
+                        <array name="interrupt_table"/>
+                        <array name="interrupts"/>
+                     </config_set>
+                  </instance>
+                  <instance name="I2C0" uuid="6991dd56-edb1-4636-a1b7-40aaa0ca4d62" type="i2c" type_id="i2c_2566d7363e7e9aaedabb432110e372d7" mode="I2C_Polling" peripheral="I2C0" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="fsl_i2c" quick_selection="QS_I2C_1">
+                        <setting name="i2c_mode" value="kI2C_Master"/>
+                        <setting name="clockSource" value="BusInterfaceClock"/>
+                        <setting name="clockSourceFreq" value="GetFreq"/>
+                        <struct name="i2c_master_config">
+                           <setting name="enableMaster" value="true"/>
+                           <setting name="enableStopHold" value="false"/>
+                           <setting name="baudRate_Bps" value="100000"/>
+                           <setting name="glitchFilterWidth" value="0"/>
+                        </struct>
+                     </config_set>
+                  </instance>
+                  <instance name="I2C1" uuid="3dd3e7e3-af6a-4cf0-ae10-ba547ae6a4df" type="i2c" type_id="i2c_2566d7363e7e9aaedabb432110e372d7" mode="I2C_Polling" peripheral="I2C1" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="fsl_i2c" quick_selection="QS_I2C_1">
+                        <setting name="i2c_mode" value="kI2C_Master"/>
+                        <setting name="clockSource" value="BusInterfaceClock"/>
+                        <setting name="clockSourceFreq" value="GetFreq"/>
+                        <struct name="i2c_master_config">
+                           <setting name="enableMaster" value="true"/>
+                           <setting name="enableStopHold" value="false"/>
+                           <setting name="baudRate_Bps" value="100000"/>
+                           <setting name="glitchFilterWidth" value="0"/>
+                        </struct>
+                     </config_set>
+                  </instance>
+                  <instance name="TPM0" uuid="8b224591-07b5-4a57-b89b-e7f5b398958f" type="tpm" type_id="tpm_e7472ea12d53461b8d293488f3ed72ec" mode="EdgeAligned" peripheral="TPM0" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="tpm_main_config">
+                        <struct name="tpm_config">
+                           <setting name="clockSource" value="kTPM_ExternalClock"/>
+                           <setting name="extClockFrequency" value="1"/>
+                           <setting name="prescale" value="kTPM_Prescale_Divide_1"/>
+                           <setting name="timerFrequency" value="10000"/>
+                           <setting name="useGlobalTimeBase" value="false"/>
+                           <setting name="triggerSelect" value="kTPM_Trigger_Select_0"/>
+                           <setting name="triggerSource" value="kTPM_TriggerSource_External"/>
+                           <setting name="enableDoze" value="false"/>
+                           <setting name="enableDebugMode" value="false"/>
+                           <setting name="enableReloadOnTrigger" value="false"/>
+                           <setting name="enableStopOnOverflow" value="false"/>
+                           <setting name="enableStartOnTrigger" value="false"/>
+                           <setting name="enablePauseOnTrigger" value="false"/>
+                        </struct>
+                        <set name="timer_interrupts">
+                           <selected/>
+                        </set>
+                        <setting name="enable_irq" value="false"/>
+                        <struct name="tpm_interrupt">
+                           <setting name="IRQn" value="TPM0_IRQn"/>
+                           <setting name="enable_interrrupt" value="enabled"/>
+                           <setting name="enable_priority" value="false"/>
+                           <setting name="priority" value="0"/>
+                           <setting name="enable_custom_name" value="false"/>
+                        </struct>
+                        <setting name="EnableTimerInInit" value="true"/>
+                     </config_set>
+                     <config_set name="tpm_edge_aligned_mode">
+                        <array name="tpm_edge_aligned_channels_config"/>
+                     </config_set>
+                  </instance>
+               </instances>
+            </functional_group>
+         </functional_groups>
+         <components>
+            <component name="system" uuid="de2bf096-512c-49ab-889c-0bbd33de5f40" type_id="system_54b53072540eeeb8f8e9343e71f28176">
+               <config_set_global name="global_system_definitions">
+                  <setting name="user_definitions" value=""/>
+                  <setting name="user_includes" value=""/>
+               </config_set_global>
+            </component>
+            <component name="uart_cmsis_common" uuid="68218bab-2ad7-4e9b-8e6a-41d56642ce30" type_id="uart_cmsis_common_9cb8e302497aa696fdbb5a4fd622c2a8">
+               <config_set_global name="global_USART_CMSIS_common" quick_selection="default"/>
+            </component>
+            <component name="gpio_adapter_common" uuid="9aec38a5-546b-437d-80aa-cb155f8a3ddb" type_id="gpio_adapter_common_57579b9ac814fe26bf95df0a384c36b6">
+               <config_set_global name="global_gpio_adapter_common" quick_selection="default"/>
+            </component>
+            <component name="msg" uuid="1144cbb9-ded6-4e8d-92ce-a63bee2abd54" type_id="msg_6e2baaf3b97dbeef01c0043275f9a0e7">
+               <config_set_global name="global_messages"/>
+            </component>
+            <component name="generic_uart" uuid="b309eb51-5f4f-4db0-ae67-b6b8b67251d0" type_id="generic_uart_8cae00565451cf2346eb1b8c624e73a6">
+               <config_set_global name="global_uart"/>
+            </component>
+            <component name="generic_can" uuid="24971582-cd04-4481-86e9-edba06322705" type_id="generic_can_1bfdd78b1af214566c1f23cf6a582d80">
+               <config_set_global name="global_can"/>
+            </component>
+            <component name="generic_enet" uuid="dfaf41fc-3415-4963-9141-8ae3dd94cc4a" type_id="generic_enet_74db5c914f0ddbe47d86af40cb77a619">
+               <config_set_global name="global_enet"/>
+            </component>
+         </components>
+      </periphs>
+      <tee name="TEE" version="7.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
+         <tee_profile>
+            <processor_version>N/A</processor_version>
+         </tee_profile>
+      </tee>
+   </tools>
+</configuration>
